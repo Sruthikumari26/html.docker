@@ -1,10 +1,13 @@
-FROM python:3
+FROM nginx:alpine
 
-WORKDIR /usr/src/app
+# Remove nginx's default welcome page
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY index.html
-RUN pip install --no-cache-dir -r index.html
+# Copy your HTML into nginx's web root
+COPY index.html /usr/share/nginx/html/index.html
 
-COPY . .
+# nginx listens on port 80
+EXPOSE 80
 
-CMD [ "python", "./your-daemon-or-script.py" ]
+# Start nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
