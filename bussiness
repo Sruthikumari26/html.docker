@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Business Proposal | Nexus Solutions</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- CSS Reset & Variables ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0b2b4e;
+      --primary-light: #1e4a76;
+      --accent: #f9a826;
+      --accent-dark: #e08e0b;
+      --light: #f4f7fb;
+      --white: #ffffff;
+      --gray: #5b6f82;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--light);
+      color: #1a2a3a;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* ---------- Global Layout ---------- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      background: var(--accent);
+      color: #1e2a36;
+      box-shadow: 0 8px 18px rgba(249, 168, 38, 0.3);
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(249, 168, 38, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--white);
+      box-shadow: none;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Header / Nav ---------- */
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links .btn {
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      background: var(--accent);
+      color: #0b2b4e;
+      box-shadow: none;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 80px 0 100px;
+      border-radius: 0 0 40px 40px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1.2;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-text h1 i {
+      color: var(--accent);
+      margin-right: 12px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 32px;
+      max-width: 550px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .hero-stats .stat {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .hero-stats .stat span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+    }
+
+    .hero-card {
+      flex: 0.8;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+    }
+
+    .hero-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    /* ---------- Services / Features ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 36px 28px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .service-icon {
+      background: rgba(249, 168, 38, 0.15);
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent-dark);
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Interactive Pricing Calculator ---------- */
+    .pricing-section {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 60px 48px;
+      margin: 40px 0;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .pricing-header h2 {
+      margin-bottom: 8px;
+    }
+
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .pricing-controls {
+      flex: 1.2;
+      min-width: 300px;
+    }
+
+    .slider-group {
+      margin-bottom: 32px;
+    }
+
+    .slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .slider-group input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      background: #dde5ed;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .slider-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(249, 168, 38, 0.5);
+      border: 2px solid white;
+    }
+
+    .slider-group input[type="range"]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid white;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--light);
+      padding: 16px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .checkbox-item:hover {
+      background: #e9eef5;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checkbox-item label {
+      font-weight: 500;
+      color: var(--primary);
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .checkbox-item .price-tag {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .pricing-result {
+      flex: 0.8;
+      min-width: 260px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(11, 43, 78, 0.3);
+    }
+
+    .pricing-result h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 8px;
+    }
+
+    .pricing-result .price {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--accent);
+      margin: 16px 0;
+    }
+
+    .pricing-result .price small {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .pricing-result ul {
+      list-style: none;
+      text-align: left;
+      margin: 24px 0;
+      font-size: 0.95rem;
+    }
+
+    .pricing-result ul li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-result ul li i {
+      color: var(--accent);
+      width: 18px;
+    }
+
+    /* ---------- Testimonial / Trust ---------- */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      padding: 32px 28px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-card i {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card p {
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .testimonial-author span {
+      display: block;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ---------- Contact / Form ---------- */
+    .contact-section {
+      background: var(--primary);
+      border-radius: var(--radius);
+      padding: 60px 48px;
+      color: var(--white);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .contact-info h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 32px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contact-detail i {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .contact-form {
+      flex: 1.2;
+      min-width: 300px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 1rem;
+      transition: border 0.15s, background 0.15s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group select option {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      background: var(--accent);
+      color: #0b2b4e;
+      font-size: 1.05rem;
+    }
+
+    .form-feedback {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: var(--accent);
+      min-height: 24px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--gray);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 40px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .pricing-grid {
+        flex-direction: column;
+      }
+
+      .contact-section {
+        flex-direction: column;
+        padding: 40px 28px;
+      }
+
+      .pricing-section {
+        padding: 40px 24px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .pricing-result .price {
+        font-size: 2.8rem;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Nexus<span>Pro</span></div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Clients</a>
+        <a href="#contact" class="btn">Get Proposal</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1><i class="fas fa-handshake"></i> Your growth, our blueprint.</h1>
+        <p>We craft tailored business solutions that turn your goals into measurable results. Explore our interactive proposal and see your investment in real time.</p>
+        <a href="#pricing" class="btn"><i class="fas fa-calculator"></i> Build your plan</a>
+        <div class="hero-stats">
+          <div class="stat">98%<span>Client retention</span></div>
+          <div class="stat">250+<span>Projects delivered</span></div>
+          <div class="stat">4.9<span>Avg. rating</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Interactive Proposal</h3>
+        <p>Adjust services and see your monthly investment update instantly.</p>
+        <a href="#pricing" class="btn btn-outline" style="width:100%;">Try it now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="services" class="container">
+    <h2>What we bring to the table</h2>
+    <p class="section-subtitle">Every engagement is built around your unique needs. Here’s how we can help.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Market Analysis</h3>
+        <p>Deep-dive research to uncover opportunities and position your brand for success.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>Growth Strategy</h3>
+        <p>Actionable roadmaps that align sales, marketing, and operations for scalable growth.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Digital Transformation</h3>
+        <p>Modern tools and automation that streamline workflows and boost productivity.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-users"></i></div>
+        <h3>Team Enablement</h3>
+        <p>Workshops and coaching to empower your team with the skills they need to win.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTERACTIVE PRICING CALCULATOR ========== -->
+  <section id="pricing" class="container">
+    <div class="pricing-section">
+      <div class="pricing-header">
+        <h2>Build your custom proposal</h2>
+        <p style="color: var(--gray);">Adjust the sliders and options — your estimate updates live.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Controls -->
+        <div class="pricing-controls">
+          <div class="slider-group">
+            <label>
+              <span><i class="fas fa-clock"></i> Hours per month</span>
+              <span id="hoursValue">20 hrs</span>
+            </label>
+            <input type="range" id="hoursSlider" min="5" max="100" value="20" step="5">
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span><i class="fas fa-project-diagram"></i> Strategy sessions</span>
+              <span id="sessionsValue">2</span>
+            </label>
+            <input type="range" id="sessionsSlider" min="1" max="8" value="2" step="1">
+          </div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="analytics" checked>
+              <label for="analytics">Advanced Analytics Dashboard</label>
+              <span class="price-tag">+ $400</span>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="support">
+              <label for="support">Priority 24/7 Support</label>
+              <span class="price-tag">+ $300</span>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="content">
+              <label for="content">Content & Creative Assets</label>
+              <span class="price-tag">+ $550</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="pricing-result">
+          <h3>Your monthly investment</h3>
+          <div class="price" id="totalPrice">$1,400<small>/mo</small></div>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Dedicated account manager</li>
+            <li><i class="fas fa-check-circle"></i> Weekly progress reports</li>
+            <li><i class="fas fa-check-circle"></i> Cancel anytime</li>
+          </ul>
+          <a href="#contact" class="btn" style="width:100%;" id="proposalBtn">Request this proposal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section id="testimonials" class="container">
+    <h2>Trusted by growing businesses</h2>
+    <p class="section-subtitle">Don’t just take our word for it — here’s what clients say.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>NexusPro transformed our go-to-market strategy. The interactive proposal made it easy to see the value upfront.</p>
+        <div class="testimonial-author">Sarah Chen <span>COO, GreenLeaf Organics</span></div>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>We scaled from 5 to 30 employees in a year. Their tailored roadmap was spot on and the pricing was transparent.</p>
+        <div class="testimonial-author">James Okafor <span>Founder, TechHive Labs</span></div>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>The calculator helped us budget accurately. No surprises, just results. Highly recommend their business proposals.</p>
+        <div class="testimonial-author">Elena Rossi <span>Marketing Director, Bella Vita</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT / INTERACTIVE FORM ========== -->
+  <section id="contact" class="container">
+    <div class="contact-section">
+      <div class="contact-info">
+        <h2>Let’s make it official</h2>
+        <p>Fill in your details and we’ll send a tailored proposal within 24 hours. No obligation.</p>
+        <div class="contact-detail">
+          <i class="fas fa-envelope"></i>
+          <span>hello@nexuspro.com</span>
+        </div>
+        <div class="contact-detail">
+          <i class="fas fa-phone-alt"></i>
+          <span>+1 (555) 123-4567</span>
+        </div>
+        <div class="contact-detail">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 Business Ave, Suite 400</span>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="proposalForm">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Work email" required>
+          </div>
+          <div class="form-group">
+            <select id="serviceInterest">
+              <option value="">I'm interested in...</option>
+              <option value="strategy">Growth Strategy</option>
+              <option value="digital">Digital Transformation</option>
+              <option value="analytics">Analytics & Data</option>
+              <option value="full">Full-service partnership</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea rows="3" id="message" placeholder="Tell us about your goals..."></textarea>
+          </div>
+          <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send request</button>
+          <div class="form-feedback" id="formFeedback"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <p>© 2025 NexusPro. All rights reserved. This proposal is for demonstration purposes.</p>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT for interactivity ========== -->
+  <script>
+    (function() {
+      // ----- DOM elements -----
+      const hoursSlider = document.getElementById('hoursSlider');
+      const sessionsSlider = document.getElementById('sessionsSlider');
+      const hoursValue = document.getElementById('hoursValue');
+      const sessionsValue = document.getElementById('sessionsValue');
+      const totalPriceEl = document.getElementById('totalPrice');
+      
+      const analyticsCheck = document.getElementById('analytics');
+      const supportCheck = document.getElementById('support');
+      const contentCheck = document.getElementById('content');
+
+      // ----- Pricing constants -----
+      const HOURLY_RATE = 50;          // $ per hour
+      const SESSION_RATE = 150;        // $ per strategy session
+      const ANALYTICS_COST = 400;
+      const SUPPORT_COST = 300;
+      const CONTENT_COST = 550;
+
+      // ----- Update price function -----
+      function updatePrice() {
+        // Read values
+        const hours = parseInt(hoursSlider.value, 10);
+        const sessions = parseInt(sessionsSlider.value, 10);
+
+        // Update displayed slider values
+        hoursValue.textContent = hours + ' hrs';
+        sessionsValue.textContent = sessions;
+
+        // Calculate base
+        let total = (hours * HOURLY_RATE) + (sessions * SESSION_RATE);
+
+        // Add optional extras
+        if (analyticsCheck.checked) total += ANALYTICS_COST;
+        if (supportCheck.checked) total += SUPPORT_COST;
+        if (contentCheck.checked) total += CONTENT_COST;
+
+        // Format with commas
+        const formatted = total.toLocaleString('en-US');
+        totalPriceEl.innerHTML = `$${formatted}<small>/mo</small>`;
+      }
+
+      // ----- Attach event listeners -----
+      hoursSlider.addEventListener('input', updatePrice);
+      sessionsSlider.addEventListener('input', updatePrice);
+      analyticsCheck.addEventListener('change', updatePrice);
+      supportCheck.addEventListener('change', updatePrice);
+      contentCheck.addEventListener('change', updatePrice);
+
+      // Initial calculation
+      updatePrice();
+
+      // ----- Form handling (interactive feedback) -----
+      const form = document.getElementById('proposalForm');
+      const feedback = document.getElementById('formFeedback');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (!name || !email) {
+          feedback.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill in your name and email.';
+          feedback.style.color = '#f9a826';
+          return;
+        }
+
+        // Simulate sending (no backend)
+        feedback.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending your request...';
+        feedback.style.color = '#f9a826';
+
+        setTimeout(() => {
+          feedback.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your custom proposal is on its way. We\'ll reply within 24h.';
+          feedback.style.color = '#b9f5b0';
+          form.reset();
+          // optionally reset the checkboxes / sliders to default? not needed but nice.
+        }, 1200);
+      });
+
+      // ----- Optional: Smooth scroll for anchor links (native) already works due to CSS scroll-behavior, but ensure offset -----
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Also, if someone clicks "Request this proposal" we could prefill the form? not necessary but nice.
+      document.getElementById('proposalBtn').addEventListener('click', function(e) {
+        // The anchor will scroll, but also we could prefill a note. Let's just let it scroll.
+        // Optionally set a message.
+        const msgField = document.getElementById('message');
+        if (msgField && !msgField.value) {
+          msgField.value = 'I would like to proceed with the interactive proposal I configured.';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
